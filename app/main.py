@@ -1,18 +1,17 @@
-from dataclasses import Field
 from fastapi import FastAPI, Request, Form
 import requests
-from typing import Optional, Union
+from typing import Union
 from pydantic import BaseModel
 from datetime import datetime
 import uvicorn
 from sqlalchemy import create_engine
-from app.DatabaseConnection import engine,sessionLocal,base
-from sqlalchemy import Column,String,Integer
+from app.DatabaseConnection import engine
 from sqlalchemy.orm import Session
+from . import model
 
 app = FastAPI()
 
-base.metadata.create_all(bind=engine)
+model.base.metadata.create_all(bind=engine)
 
 class Item(BaseModel):
     q: Union[str, None] = None
@@ -25,13 +24,6 @@ class InfoSchema(BaseModel):
     
     class Config:
         orm_model=True   
-        
-class Weather(base):
-    __tablename__="info0"
-    id = Column(Integer, primary_key=True, index=True)
-    name=Column(String(255),unique=True,index=True)
-    ip=Column(String(255),unique=True,index=True)
-    time=Column(String(255),unique=True,index=True)
          
 @app.put('/weather')
 async def search_city(infoSchema: InfoSchema, request: Request, q: str | None = None):
@@ -46,18 +38,19 @@ async def search_city(infoSchema: InfoSchema, request: Request, q: str | None = 
     temperature = response.get('main', {}).get('temp')
     description = response.get('weather', {})[0].get('description')
     
-    info = Weather(id=infoSchema.id, name=city, ip = client_host, time= start_date)
+    info = model.Weather(id=infoSchema.id, name=city, ip = client_host, time= start_date)
     with Session(bind=engine) as session:
         session.add(info)
         session.commit() 
         
     if temperature:
         current_temperature = round(temperature - 273.15, 2)
-        return f'Temperature of {city.title()} is {current_temperature}`C, description: {description}, IP is {client_host}, time is {start_date}' 
+        return {"Temperature of ":city.title(),"temp: ":{current_temperature}, "description: ":{description}, "IP is ": {client_host}, "time is ":{start_date}}
  
 @app.get("/")
 def home():
-    return {"message": "The Weather!"}
+    a = 1
+    return {"message1": "The Weather!", "alo: ":a}
         
 if __name__ == '__main__':
     uvicorn.run("main:app")
