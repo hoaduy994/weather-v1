@@ -10,10 +10,16 @@ pipeline{
 
         stage('Install pip') {
             steps {
-                sh 'sudo apt-get update && sudo apt-get install -y python-pip'
+                script{
+                    sh """
+                    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    python get-pip.py
+                    """
+                }
+                
             }
         }
-        
+
         stage('Setup') { // Install any dependencies you need to perform testing
             steps {
                 script {
