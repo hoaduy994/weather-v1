@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('clone1') {
+        stage('clone') {
             steps {
                 git 'https://github.com/hoaduy994/weather-v1.git'
             }
