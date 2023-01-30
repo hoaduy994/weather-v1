@@ -3,7 +3,6 @@ pipeline{
         registry = 'hoaduy994/weather-v1'
         registryCredential = 'dockerhub-credentials'
         dockerImage = ''
-        build_version = "1+${BUILD_NUMBER}"
     }
     agent any
 
