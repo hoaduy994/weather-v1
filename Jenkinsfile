@@ -1,7 +1,5 @@
 pipeline{
-    agent {
-        dockerfile { filename 'Dockerfile' }
-    }
+    agent any
 
     stages {
         stage('Clone github repo'){
@@ -10,6 +8,12 @@ pipeline{
             }
         }
 
+        stage('Install pip') {
+            steps {
+                sh 'sudo apt-get update && sudo apt-get install -y python-pip'
+            }
+        }
+        
         stage('Setup') { // Install any dependencies you need to perform testing
             steps {
                 script {
