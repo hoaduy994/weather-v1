@@ -8,29 +8,29 @@ services:
     environment:
       - MYSQL_DATABASE=the_weather
       - MYSQL_ALLOW_EMPTY_PASSWORD='1'
-    expose:
-      - '3306'
+    ports:
+      - "3306:3306"
     volumes:
       - db:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - bridge-1
+    # networks:
+    #   - bridge-1
 
   api:
     container_name: weather-app
-    build: .
-    image: weaher-app
-    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    # build: .
+    image: hoady994/weather-fastapi
+    # command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     depends_on:
       - db
     ports:
       - 8000:8000
-    links:
-      - db
-    networks:
-      - bridge-1
-    volumes:
-      - ./api/:/python
+    # links:
+    #   - db
+    # networks:
+    #   - bridge-1
+    # volumes:
+    #   - ./api/:/python
 
 networks:
   bridge-1:
