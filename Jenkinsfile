@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+        docker { image 'python:3.11.1' }
+    }
 
     stages {
         stage('Clone github repo'){
