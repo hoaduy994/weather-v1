@@ -1,5 +1,5 @@
 pipeline{
-    agent { docker { image 'python:3.11.1' } }
+    agent any
 
     stages {
         stage('Clone github repo'){
@@ -13,7 +13,7 @@ pipeline{
                 script{
                     sh """
                     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-                    python get-pip.py
+                    python --version
                     """
                 }
                 
