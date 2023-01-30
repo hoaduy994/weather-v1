@@ -20,7 +20,11 @@ pipeline{
 
         stage('testing') {
             steps {
-                sh 'python -m unittest discover'
+                script {
+                    sh """
+                    python -m unittest discover
+                    """
+                }
             }
 
         }       
