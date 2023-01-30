@@ -3,7 +3,11 @@ pipeline{
         registry = 'hoaduy994/weather-v1'
 
     }
-    agent any
+    agent {
+        docker { 
+            image 'python:3.11.1' 
+        }
+    }
 
     stages {
         stage('Clone'){
@@ -11,10 +15,10 @@ pipeline{
                 git 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-
+    
         stage('Setup') {
             steps {
-                sh 'virtualenv venv && . venv/bin/activate && pip install -r requirements.txt'
+                sh 'python -m pip install -r requirements.txt'
             }
         }
 
