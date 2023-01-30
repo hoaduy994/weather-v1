@@ -12,8 +12,8 @@ pipeline{
             steps {
                 script{
                     sh """
-                    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-                    python --version
+                    wget https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    python get-pip.py
                     """
                 }
                 
