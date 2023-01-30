@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+        dockerfile { filename 'Dockerfile.build' }
+    }
 
     stages {
         stage('Clone github repo'){
@@ -11,9 +13,9 @@ pipeline{
         stage('Setup') { // Install any dependencies you need to perform testing
             steps {
                 script {
-                sh """
-                pip install -r requirements.txt
-                """
+                    sh """
+                    pip install -r requirements.txt
+                    """
                 }
             }
         }
