@@ -9,7 +9,7 @@ pipeline{
     stages {
         stage('Clone github repo'){
             steps {
-                git credentialsId: 'github-credentials', url: 'https://github.com/hoaduy994/weather-v1.git', branch: 'main'
+                git credentialsId: 'dockerhub-credentials', url: 'https://github.com/hoaduy994/weather-v1.git', branch: 'main'
             }
         }
 
