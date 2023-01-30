@@ -1,26 +1,22 @@
 pipeline{
     environment {
         registry = 'hoaduy994/weather-v1'
-
+        registryCredential = 'dockerhub-credentials'
+        dockerImage = ''
+        build_version = "1+${BUILD_NUMBER}"
     }
     agent any
 
     stages {
-        stage('Clone'){
+        stage('Clone github repo'){
             steps {
-                git 'https://github.com/hoaduy994/weather-v1.git'
-            }
-        }
-
-        stage('install python'){
-            steps {
-                sh 'apt install python -y'
+                git credentialsId: 'github-credentials', url: 'https://github.com/hoaduy994/weather-v1.git', branch: 'main'
             }
         }
 
         stage('Setup') {
             steps {
-                sh 'python -m pip install -r requirements.txt'
+                sh 'pip install -r requirements.txt --user'
             }
         }
 
