@@ -50,7 +50,7 @@ async def search_city(infoSchema: InfoSchema, request: Request, q: str | None = 
 @app.get("/")
 def home():
     a = 1
-    return {"message": "The Weather-v1!", "???: ":a}
+    return {"message": "The Weather-v1!", "??? no la cai gi day: ":a}
         
 if __name__ == '__main__':
     uvicorn.run("main:app")
