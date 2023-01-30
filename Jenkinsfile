@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent { docker { image 'python:3.11.1' } }
 
     stages {
         stage('Clone github repo'){
@@ -8,17 +8,17 @@ pipeline{
             }
         }
 
-        // stage('Install pip') {
-        //     steps {
-        //         script{
-        //             sh """
-        //             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-        //             python get-pip.py
-        //             """
-        //         }
+        stage('Install pip') {
+            steps {
+                script{
+                    sh """
+                    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    python get-pip.py
+                    """
+                }
                 
-        //     }
-        // }
+            }
+        }
 
         stage('Setup') { // Install any dependencies you need to perform testing
             steps {
