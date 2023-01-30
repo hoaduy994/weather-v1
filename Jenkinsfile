@@ -7,23 +7,23 @@ pipeline{
                 git 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-        stage('checkmap'){
+
+        stage('Setup') { // Install any dependencies you need to perform testing
             steps {
-                sh 'pip --version'
+                script {
+                sh """
+                pip install -r requirements.txt
+                """
+                }
             }
         }
-        // stage('Setup') {
-        //     steps {
-        //         sh 'pip install -r requirements.txt'
-        //     }
-        // }
 
-        // stage('testing') {
-        //     steps {
-        //         sh 'python -m unittest discover'
-        //     }
+        stage('testing') {
+            steps {
+                sh 'python -m unittest discover'
+            }
 
-        // }       
+        }       
         
     }
 }
