@@ -8,17 +8,17 @@ pipeline{
             }
         }
 
-        stage('Install pip') {
-            steps {
-                script{
-                    sh """
-                    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-                    python get-pip.py
-                    """
-                }
+        // stage('Install pip') {
+        //     steps {
+        //         script{
+        //             sh """
+        //             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        //             python get-pip.py
+        //             """
+        //         }
                 
-            }
-        }
+        //     }
+        // }
 
         stage('Setup') { // Install any dependencies you need to perform testing
             steps {
