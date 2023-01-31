@@ -8,24 +8,15 @@ pipeline {
                     url: 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-        stage('build') {
-            steps {
-                script {
-                    sh """
-                        python -m venv venv
-                        . venv/scripts/activate
-                        pip install python-jenkins
-                    """
-                }
-            }
-        }
 
         stage('Install pip') {
             
             steps {
+                scripts {
                     sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     sh 'python get-pip.py'
-                    // sh 'python --version'    
+                    // sh 'python --version' 
+                }   
             }
         }
 
