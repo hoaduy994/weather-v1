@@ -14,14 +14,14 @@ pipeline {
                 bat 'choco install python --version 3.9.0'
             }
         }
-        stage('Verify installation') {
+        stage('Verify installation1') {
             steps {
                 bat 'python --version'
                 bat 'python -m ensurepip --upgrade'
             }
         }
 
-        stage('Install Python') {
+        stage('Install Python1') {
             steps {
                 sh 'sudo apt-get update'
                 sh 'sudo apt-get install -y python3'
