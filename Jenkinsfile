@@ -40,7 +40,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/user/fastapi-app.git'
+                git 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
         stage('Build image') {
