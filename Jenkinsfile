@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'windows'
-    }
+    agent any
     stages {
         stage('clone') {
             steps {
@@ -22,7 +20,7 @@ pipeline {
                 bat 'python -m ensurepip --upgrade'
             }
         }
-        
+
         stage('Install Python') {
             steps {
                 sh 'sudo apt-get update'
