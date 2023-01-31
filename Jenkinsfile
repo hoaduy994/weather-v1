@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'windows'
+    }
     stages {
         stage('clone') {
             steps {
@@ -39,7 +41,7 @@ pipeline {
             }
         }
 
-        stage('Install pip') {
+        stage('Install pip1') {
             
             steps {
                 script {
