@@ -8,26 +8,13 @@ pipeline {
                     url: 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-
         stage('Install Python') {
-            steps {
-                bat 'choco install python --version 3.9.0'
-            }
-        }
-        stage('Verify installation1') {
-            steps {
-                bat 'python --version'
-                bat 'python -m ensurepip --upgrade'
-            }
-        }
-
-        stage('Install Python1') {
             steps {
                 sh 'sudo apt-get update'
                 sh 'sudo apt-get install -y python3'
             }
         }
-        stage('Install pip') {
+        stage('Install pipp') {
             steps {
                 sh 'sudo apt-get install -y python3-pip'
             }
@@ -39,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Install pip1') {
+        stage('Install pip') {
             
             steps {
                 script {
