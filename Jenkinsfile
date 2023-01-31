@@ -12,7 +12,7 @@ pipeline{
             steps {
                     // sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     // sh 'python get-pip.py'
-                    sh 'python --version'    
+                    sh 'python3 --version'    
             }
         }
 
