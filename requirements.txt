@@ -1,4 +1,12 @@
-# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+certifi==2022.12.7
+charset-normalizer==3.0.1
+idna==3.4
+multi-key-dict==2.0.3
+pbr==5.11.1
+python-jenkins==1.7.0
+requests==2.28.2
+six==1.16.0
+urllib3==1.26.14
 fastapi==0.89.1
 pip==22.3.1
 uvicorn==0.20.0
