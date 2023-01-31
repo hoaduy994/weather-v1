@@ -2,10 +2,11 @@ pipeline {
     agent  any
     stages {
         stage('build') {
-            agent {docker{image 'python:3.11.1'}}
+            agent python
             steps {
                 script {
                     sh """
+                        docker --version
                         python -m venv venv
                         . venv/scripts/activate
                         pip install python-jenkins
