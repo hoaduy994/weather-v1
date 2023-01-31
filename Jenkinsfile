@@ -2,6 +2,7 @@ pipeline {
     agent  any
     stages {
         stage('build') {
+            agent {docker{image 'python:3.11.1'}}
             steps {
                 script {
                     sh """
