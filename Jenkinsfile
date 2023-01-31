@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                // Get some code from a GitHub repository
-                git url: 'https://github.com/hoaduy994/weather-v1.git', branch: 'main'
+                git branch: "main",
+                    credentialsId: 'dockerhub-credentials',
+                    url: 'https://github.com/hoaduy994/weather-v1.git'
                 sh 'python --version'
             }
         }
