@@ -3,9 +3,14 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python -m venv venv'
-                sh '. venv/scripts/activate'
-                sh 'pip install python-jenkins'
+                scripts {
+                    sh """
+                        python -m venv venv
+                        . venv/scripts/activate
+                        pip install python-jenkins
+                        pip install -r requirements.txt
+                    """
+                }
             }
         }
 
