@@ -10,12 +10,9 @@ pipeline{
 
         stage('Install pip') {
             steps {
-                script{
                     // sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     // sh 'python get-pip.py'
-                    sh 'python g--version'
-                }
-                
+                    sh 'python --version'    
             }
         }
 
