@@ -1,9 +1,9 @@
 pipeline {
-    agent any
+    agent  { docker { image 'python:3.11.1' } }
     stages {
         stage('build') {
             steps {
-                scripts {
+                script {
                     sh """
                         python -m venv venv
                         . venv/scripts/activate
