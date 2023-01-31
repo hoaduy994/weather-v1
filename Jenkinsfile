@@ -8,23 +8,6 @@ pipeline {
                     url: 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-        stage('Install Python') {
-            steps {
-                sh 'sudo apt-get update'
-                sh 'sudo apt-get install -y python3'
-            }
-        }
-        stage('Install pipp') {
-            steps {
-                sh 'sudo apt-get install -y python3-pip'
-            }
-        }
-        stage('Verify installation') {
-            steps {
-                sh 'python3 --version'
-                sh 'pip3 --version'
-            }
-        }
 
         stage('Install pip') {
             
