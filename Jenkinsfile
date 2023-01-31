@@ -2,7 +2,6 @@ pipeline {
     agent  any
     stages {
         stage('build') {
-            agent python
             steps {
                 script {
                     sh """
