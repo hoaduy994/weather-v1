@@ -1,63 +1,68 @@
-// pipeline {
-//     agent  any
-//     stages {
-//         stage('clone') {
-//             steps {
-//                 git branch: "main",
-//                     credentialsId: 'dockerhub-credentials',
-//                     url: 'https://github.com/hoaduy994/weather-v1.git'
-//             }
-//         }
-
-//         stage('Install pip') {
-            
-//             steps {
-//                 script {
-//                     sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
-//                     sh 'python get-pip.py'
-//                     // sh 'python --version' 
-//                 }   
-//             }
-//         }
-
-//         stage('Setup') { // Install any dependencies you need to perform testing
-//             steps {
-//                 sh 'pip install -r requirements.txt'
-//             }
-//         }
-
-//         stage('testing') {
-//             steps {
-//                 sh 'python -m unittest discover'
-//             }
-
-//         }       
-        
-//     }
-// }
 pipeline {
-    agent any
+    agent {
+        label 'windows'
+    }
     stages {
-        stage('Clone repository') {
+        stage('clone') {
             steps {
-                git 'https://github.com/hoaduy994/weather-v1.git'
+                git branch: "main",
+                    credentialsId: 'dockerhub-credentials',
+                    url: 'https://github.com/hoaduy994/weather-v1.git'
             }
         }
-        stage('Build image') {
+
+        stage('Install Python') {
             steps {
-                sh 'docker build -t fastapi-app .'
+                bat 'choco install python --version 3.9.0'
             }
         }
-        stage('Run container') {
+        stage('Verify installation') {
             steps {
-                sh 'docker run -p 8080:80 fastapi-app'
+                bat 'python --version'
+                bat 'python -m ensurepip --upgrade'
             }
         }
-        stage('Test API') {
+        
+        stage('Install Python') {
             steps {
-                sh 'curl http://localhost:8080/docs'
-                sh 'curl http://localhost:8080/ping'
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get install -y python3'
             }
         }
+        stage('Install pip') {
+            steps {
+                sh 'sudo apt-get install -y python3-pip'
+            }
+        }
+        stage('Verify installation') {
+            steps {
+                sh 'python3 --version'
+                sh 'pip3 --version'
+            }
+        }
+
+        stage('Install pip') {
+            
+            steps {
+                script {
+                    sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
+                    sh 'python get-pip.py'
+                }   
+            }
+        }
+
+        stage('Setup') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('testing') {
+            steps {
+                sh 'python -m unittest discover'
+            }
+
+        }       
+        
     }
 }
