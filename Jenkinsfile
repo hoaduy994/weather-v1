@@ -6,7 +6,6 @@ pipeline {
                 git branch: "main",
                     credentialsId: 'dockerhub-credentials',
                     url: 'https://github.com/hoaduy994/weather-v1.git'
-                sh 'python --version'
             }
         }
         stage('build') {
